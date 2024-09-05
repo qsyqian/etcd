@@ -111,7 +111,8 @@ func putFunc(cmd *cobra.Command, _ []string) {
 			} else {
 				binary.PutVarint(k, int64(rand.Intn(keySpaceSize)))
 			}
-			requests <- v3.OpPut(string(k), v)
+			kString := fmt.Sprintf("%d", i%10)
+			requests <- v3.OpPut(kString, v)
 		}
 		close(requests)
 	}()
